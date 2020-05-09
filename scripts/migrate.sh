@@ -2,10 +2,18 @@
 
 set -e
 
-DBNAME="arc_verification"
-DBUSER="postgres"
-DBPASS="postgres"
-DBHOST="172.17.0.2"
+if [ -z "$DBNAME" ]; then
+	DBNAME="arc_verification"
+fi
+if [ -z "$DBUSER" ]; then
+	DBUSER="postgres"
+fi
+if [ -z "$DBPASS" ]; then
+	DBPASS="postgres"
+fi
+if [ -z "$DBHOST" ]; then
+	DBHOST="172.17.0.2"
+fi
 
 execute_root_query() {
     echo "$1" | PGPASSWORD="$DBPASS" psql -A -t -h "$DBHOST" -U "$DBUSER" postgres

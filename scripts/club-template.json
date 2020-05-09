@@ -1,0 +1,8 @@
+{
+    "name": "club name",
+    "permalink": "club_name",
+    "description": "a sample description for the club (min 10 chars)",
+    "email": "contact@email.com",
+    "website": "http://example.com",
+    "discord_id": "discord_id"
+}

@@ -40,7 +40,7 @@ class Club(Model):
     @classmethod
     def create(cls, data):
         return super().create({
-            'is_enabled': False,
+            'is_enabled': True,
             **data
         }, ['_id', 'created_at', 'updated_at'])
 
