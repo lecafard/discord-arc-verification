@@ -2,7 +2,6 @@ import falcon
 from config import web_url
 from . import Resource, require_private_auth
 from falcon.media.validators import jsonschema
-from store.verification import EmailVerification
 from views.verification import admin_verification_schema, user_verification_schema
 from models.user import User as UserModel
 from models.club import Club as ClubModel

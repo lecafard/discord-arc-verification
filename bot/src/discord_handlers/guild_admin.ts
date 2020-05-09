@@ -3,7 +3,7 @@
  */
 
 import { Message, TextChannel } from "discord.js";
-import { getClub, updateClub, getClubMembers, getUser } from "../services/api";
+import { getClub, updateClub, getClubMembers, getUser, createSignedURL } from "../services/api";
 
 
 export async function setAdminChannel(arg: string, ctx: Message): Promise<void> {
@@ -56,11 +56,16 @@ setVerificationRole.help = {
 
 export async function listMembers(arg: string, ctx: Message): Promise<void> {
     if (!ctx.guild) return;
-  
+
     // Grab club
     const club = await getClub(ctx.guild.id);
     if (!club) return;
     if (ctx.channel.id !== club.admin_channel_id) return;
+    if (arg === 'json') {
+        const res = await createSignedURL(`clubs_by_guild/${ctx.guild.id}/members`, 'GET');
+        ctx.reply(`The link to access the members list is ${res.url}. It will expire in ${res.expires} seconds.`);
+        return;
+    }
     const members = await getClubMembers(ctx.guild.id);
     
     let message = "";

@@ -9,6 +9,7 @@ import resources.clubs
 import resources.validations
 import resources.verifications
 import resources.users
+import resources.sign
 
 def handle_base_errors(ex, req: falcon.Request, res: falcon.Response, params: any):
     raise falcon.HTTPError(ex.code, ex.message)
@@ -38,6 +39,7 @@ application.add_route('/clubs/{club_id}', resources.clubs.Public())
 application.add_route('/priv/users_by_discord/{user_id}', resources.users.DiscordUser())
 
 application.add_route('/priv/verifications', resources.verifications.Private())
+application.add_route('/priv/sign', resources.sign.Sign())
 application.add_route('/verifications/{token}', resources.verifications.User())
 application.add_route('/validations/{token}', resources.validations.User())
 

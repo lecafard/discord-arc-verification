@@ -8,9 +8,11 @@ import lib.redis
 
 EXPIRES_VERIFICATION = 3600
 EXPIRES_VALIDATION = 3600
+EXPIRES_PRIV = 300
 
 AUD_VERIFICATION = "verification"
 AUD_VALIDATION = "validation"
+AUD_PRIV = "priv"
 
 def generate(audience: str, expires: int, data: object):
   encoded = jwt.encode({
@@ -33,6 +35,11 @@ def generate_validation(uid: str, typ: str):
     "typ": typ
   })
 
+def generate_priv(path: str, method: str):
+  return generate(AUD_PRIV, EXPIRES_PRIV, {
+    "pth": path,
+    "mtd": method
+  })
 
 def validate(audience: str, token: str):
   # try to decode

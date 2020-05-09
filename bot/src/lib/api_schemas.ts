@@ -8,6 +8,11 @@ export interface NewVerification {
     expires: number;
 }
 
+export interface NewSignedURL {
+    url: string;
+    expires: number;
+}
+
 export interface Club {
     _id: string;
     name: string;

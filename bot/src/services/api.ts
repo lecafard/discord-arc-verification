@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
-import { APIResponse, NewVerification, Club, User } from '../lib/api_schemas';
+import { APIResponse, NewVerification, Club, User, NewSignedURL } from '../lib/api_schemas';
 import { API_URL, M2M_SECRET } from '../config';
 import { setupCache } from 'axios-cache-adapter';
 
@@ -35,6 +35,20 @@ export async function createVerification(user_id: string, guild_id: string): Pro
         const response: AxiosResponse<APIResponse<NewVerification>> = await client.post('/priv/verifications', {
             user_id,
             guild_id
+        });
+        return response.data.data;
+    } catch (e) {
+        if (e.response.status === 404) return null;
+        if (e.response.data.error) throw new APIError(e.response.data.error);
+        throw(e);
+    }
+}
+
+export async function createSignedURL(path: string, method: string): Promise<NewSignedURL> {
+    try { 
+        const response: AxiosResponse<APIResponse<NewSignedURL>> = await client.post('/priv/sign', {
+            path,
+            method
         });
         return response.data.data;
     } catch (e) {

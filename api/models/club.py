@@ -32,7 +32,7 @@ class Club(Model):
         print(user_columns)
         with super()._conn, super()._conn.cursor(cursor_factory=psycopg2.extras.DictCursor) as cur:
             cur.execute(
-                f"SELECT {user_columns} FROM {models.member._table} m" + 
+                f"SELECT {user_columns} FROM {models.member.Member._table} m" + 
                 " JOIN users ON users._id=m.user_id" +
                 " WHERE m.club_id=%s AND users.is_verified=TRUE", (self._id,))
             return [models.user.User(**i) for i in cur.fetchall()]
