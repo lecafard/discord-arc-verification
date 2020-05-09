@@ -25,7 +25,8 @@ being used by the UNSW Security Society.
 1. Enable developer mode on discord. Right click on your username on the bottom left and go into 
 User Settings > Appearance > Developer Mode.
 2. Modify the `scripts/club-template.json` file to your liking.
-3. Run `curl -X POST -H "Content-Type: application/json" -d scripts/club-template.json" https://server_address/priv/clubs` to create the club.
+3. Run `curl -X POST -H "Content-Type: application/json" -d scripts/club-template.json -H 'Authorization: Bearer srv.<API_SECRET inside the prod.env>' https://server_address/priv/clubs`
+to create the club. For the `discord_id`, right click on the server and select copy id.
 4. Add the bot to your server by following the instructions on the Discord developer page.
 5. A user with administrator permissions needs to run `$avsetadmin` on a channel which only moderators
 are allowed to access.
