@@ -12,6 +12,6 @@ pyrsistent==0.16.0
 redis==3.4.1
 requests==2.23.0
 six==1.14.0
-urllib3==1.25.8
+urllib3==1.26.5
 uWSGI==2.0.18
 zipp==3.1.0
